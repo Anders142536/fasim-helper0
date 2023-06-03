@@ -1,1 +1,1 @@
-<h1>Todo site</h1>
+<h1>Todo</h1>
