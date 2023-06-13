@@ -2,7 +2,6 @@
 </script>
 
 <slot />
-
 <nav>
 	<a href="/calendar">Calendar</a>
 	<a href="/todo">Todo</a>
