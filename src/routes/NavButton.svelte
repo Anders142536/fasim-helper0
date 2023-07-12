@@ -8,7 +8,8 @@
 	let imgsrc: string
 
 	onMount(async () => {
-		imgsrc = await import('$lib/assets/' + img)
+		imgsrc = await import(`$lib/assets/${img}.png`)
+		console.log(`imgsrc: ${imgsrc}`)
 	})
 </script>
 
