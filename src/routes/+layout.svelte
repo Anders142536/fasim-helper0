@@ -30,11 +30,13 @@
 		min-height: 300px;
 		max-height: 100vh;
 		min-width: 400px;
-		max-width: max(800px, 100vw);
+		width: 100%;
+		max-width: 800px;
 	}
 
 	.content {
 		flex: 1;
+		margin: 0px 10px 0px 10px;
 	}
 
 	nav {
