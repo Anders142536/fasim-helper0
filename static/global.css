@@ -3,13 +3,7 @@
 }
 
 body {
-	background-color: black;
+	background-color: #111;
 	font-family: sans-serif;
-	color: var(--text);
-}
-
-body {
-	background: none;
-	border: none;
 	color: var(--text);
 }
