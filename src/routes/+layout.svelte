@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NavButton from './NavButton.svelte'
+	import NavButton from '$lib/components/NavButton.svelte'
 </script>
 
 <div class="main-wrap">

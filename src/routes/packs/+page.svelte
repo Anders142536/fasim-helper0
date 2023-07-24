@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ViewLayout from '../ViewLayout.svelte'
-	import IconButton from '../IconButton.svelte'
+	import IconButton from '$lib/components/IconButton.svelte'
 	import ArchiveBoxX from '$lib/svg/ArchiveBoxX.svelte'
 </script>
 
