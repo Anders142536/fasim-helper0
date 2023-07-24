@@ -9,9 +9,9 @@
 
 	<svelte:fragment slot="toolbar">
 		<IconButton label="Add pack">
-			<ArchiveBoxX />
 		</IconButton>
 		<IconButton label="History">
+
 			<ArchiveBoxX />
 		</IconButton>
 	</svelte:fragment>
