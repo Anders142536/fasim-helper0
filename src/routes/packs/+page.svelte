@@ -1,7 +1,8 @@
 <script lang="ts">
 	import ViewLayout from '../ViewLayout.svelte'
 	import IconButton from '$lib/components/IconButton.svelte'
-	import ArchiveBoxX from '$lib/svg/ArchiveBoxX.svelte'
+	import Plus from '$lib/svg/Plus.svelte'
+	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
 </script>
 
 <ViewLayout>
@@ -9,10 +10,10 @@
 
 	<svelte:fragment slot="toolbar">
 		<IconButton label="Add pack">
+			<Plus />
 		</IconButton>
 		<IconButton label="History">
-
-			<ArchiveBoxX />
+			<ArchiveBox	/>
 		</IconButton>
 	</svelte:fragment>
 </ViewLayout>
