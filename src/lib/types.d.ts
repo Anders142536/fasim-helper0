@@ -1,6 +1,9 @@
-type Save = {
-	id: number
-	name: string
+type Calendar = { }
+
+type Todo = { }
+
+class PackWritable extends Writable<Pack[]> {
+	
 }
 
 type Pack = {
@@ -25,3 +28,5 @@ enum PackEntryType {
 	SEEDER = 'Seeder'
 	// TODO: add others
 }
+
+export { Calendar, Todo, Pack, PackEntry, PackEntryType, PackWritable }
