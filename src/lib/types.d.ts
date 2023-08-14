@@ -1,10 +1,8 @@
-type Calendar = { }
+type Calendar = {}
 
-type Todo = { }
+type Todo = {}
 
-class PackWritable extends Writable<Pack[]> {
-	
-}
+class PackWritable extends Writable<Pack[]> {}
 
 type Pack = {
 	id: number
