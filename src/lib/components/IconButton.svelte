@@ -1,8 +1,9 @@
 <script lang="ts">
 	export let label: string = ''
+	export let onClick: () => void
 </script>
 
-<button>
+<button on:click={onClick} >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		fill="none"

@@ -3,7 +3,7 @@
 	import IconButton from '$lib/components/IconButton.svelte'
 	import Plus from '$lib/svg/Plus.svelte'
 	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
-	import { packs } from '$lib/stores/stores'
+	import { addPack, packs } from '$lib/stores/stores'
 	import type { Pack } from '$lib/types'
 	import { onMount } from 'svelte'
 
@@ -32,20 +32,35 @@
 		})
 	})
 
+	function onAddPack() {
+		console.log('adding pack')
+		addPack()
+	}
+
+	function onHistory() {
+		console.log('toggling to history view')
+
+	}
+
 </script>
 
 <ViewLayout>
-	{#each packList as pack}
-		pack.name
-	{:else}
-		No packs defined
-	{/each}
+	<svelte:fragment slot='content'>
+
+		{#each packList as pack}
+			<div>
+				{`Pack: ${pack.title}`}
+			</div>
+		{:else}
+			No packs defined
+		{/each}
+	</svelte:fragment>
 
 	<svelte:fragment slot="toolbar">
-		<IconButton label="Add pack">
+		<IconButton label="Add pack" onClick={onAddPack}>
 			<Plus />
 		</IconButton>
-		<IconButton label="History">
+		<IconButton label="History" onClick={onHistory}>
 			<ArchiveBox	/>
 		</IconButton>
 	</svelte:fragment>

@@ -1,4 +1,4 @@
-import { writable, type Writable } from 'svelte/store'
+import { writable } from 'svelte/store'
 import type { Pack, PackWritable, Todo } from '../types.d'
 
 // to prevent typos
