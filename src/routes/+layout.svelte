@@ -1,17 +1,18 @@
 <script lang="ts">
-	import NavButton from '$lib/components/NavButton.svelte'
+	import "../app.postcss";
+    import NavButton from '$lib/components/NavButton.svelte'
 </script>
 
 <div class="main-wrap">
 	<div class="main">
 		<div class="content">
-			<slot />
+			<slot></slot>
 		</div>
 		<nav>
-			<NavButton img="nav-cal" alt="calendar" route="/calendar" />
-			<NavButton img="nav-todo" alt="todo" route="/todo" />
-			<NavButton img="nav-packs" alt="packs" route="/packs" />
-			<NavButton img="nav-set" alt="settings" route="/settings" />
+			<NavButton img="nav-cal" alt="calendar" route="/calendar"></NavButton>
+			<NavButton img="nav-todo" alt="todo" route="/todo"></NavButton>
+			<NavButton img="nav-packs" alt="packs" route="/packs"></NavButton>
+			<NavButton img="nav-set" alt="settings" route="/settings"></NavButton>
 		</nav>
 	</div>
 </div>
