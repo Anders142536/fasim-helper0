@@ -1,9 +1,0 @@
-:root {
-	--text: #eeeeee;
-}
-
-body {
-	background-color: #111;
-	font-family: sans-serif;
-	color: var(--text);
-}
