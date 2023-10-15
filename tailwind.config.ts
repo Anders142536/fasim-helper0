@@ -8,10 +8,7 @@ const config = {
 	darkMode: 'class',
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
-		join(
-			require.resolve('@skeletonlabs/skeleton'),
-			'../**/*.{html,js,svelte,ts}'
-		)
+		join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')
 	],
 
 	theme: {
@@ -21,13 +18,10 @@ const config = {
 	plugins: [
 		skeleton({
 			themes: {
-				custom: [
-					myCustomTheme
-				]
+				custom: [myCustomTheme]
 			}
 		})
 	]
 } satisfies Config
 
 export default config
-

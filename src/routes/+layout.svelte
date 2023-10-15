@@ -1,50 +1,24 @@
 <script lang="ts">
 	import "../app.postcss";
-    import NavButton from '$lib/components/NavButton.svelte'
+	import { AppShell, TabAnchor, TabGroup } from '@skeletonlabs/skeleton'
+	import { page } from '$app/stores'
+  import NavButton from '$lib/components/NavButton.svelte'
+	import NavTab from "./NavTab.svelte"
 </script>
 
-<div class="main-wrap">
-	<div class="main">
-		<div class="content">
-			<slot></slot>
-		</div>
-		<nav>
-			<NavButton img="nav-cal" alt="calendar" route="/calendar"></NavButton>
-			<NavButton img="nav-todo" alt="todo" route="/todo"></NavButton>
-			<NavButton img="nav-packs" alt="packs" route="/packs"></NavButton>
-			<NavButton img="nav-set" alt="settings" route="/settings"></NavButton>
-		</nav>
-	</div>
-</div>
-
-<style>
-	.main-wrap {
-		display: flex;
-		width: 100vw;
-		justify-content: center;
-		height: 100%;
-	}
-
-	.main {
-		display: flex;
-		flex-direction: column;
-		min-height: 300px;
-		max-height: 100vh;
-		min-width: 400px;
-		width: 100%;
-		max-width: 800px;
-	}
-
-	.content {
-		flex: 1;
-		margin: 0px 10px 0px 10px;
-	}
-
-	nav {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-evenly;
-		gap: 10px;
-		height: 64px;
-	}
-</style>
+<AppShell>
+	<slot />
+	<svelte:fragment slot="footer">
+		<TabGroup
+			active='variant-filled-primary'
+			hover='hover:variant-soft-primary'
+			rounded=''
+			class='w-full'
+		>
+			<NavTab route='/calendar' label='Calendar' img='nav-cal' />
+			<NavTab route='/todos' label='Todos' img='nav-todo' />
+			<NavTab route='/packs' label='Packs' img='nav-packs' />
+			<NavTab route='/settings' label='Settings' img='nav-set' />
+		</TabGroup>
+	</svelte:fragment>
+</AppShell>
