@@ -11,8 +11,11 @@
 	<svelte:fragment slot="footer">
 		<TabGroup
 			active='variant-filled-primary'
+			justify='justify-center'
 			hover='hover:variant-soft-primary'
 			rounded=''
+			border=''
+			flex='flex-1 lg:flex-none'
 			class='w-full'
 		>
 			<NavTab route='/calendar' label='Calendar' img='nav-cal' />
