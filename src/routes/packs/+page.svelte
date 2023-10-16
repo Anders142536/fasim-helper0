@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ViewLayout from '../ViewLayout.svelte'
 	import IconButton from '$lib/components/IconButton.svelte'
 	import Plus from '$lib/svg/Plus.svelte'
 	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
@@ -43,6 +44,7 @@
 
 </script>
 
+<ViewLayout>
 	<svelte:fragment slot='content'>
 
 		{#each packList as pack}
@@ -62,3 +64,4 @@
 			<ArchiveBox	/>
 		</IconButton>
 	</svelte:fragment>
+</ViewLayout>
