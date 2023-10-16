@@ -43,7 +43,6 @@
 
 </script>
 
-<ViewLayout>
 	<svelte:fragment slot='content'>
 
 		{#each packList as pack}
@@ -63,4 +62,3 @@
 			<ArchiveBox	/>
 		</IconButton>
 	</svelte:fragment>
-</ViewLayout>
