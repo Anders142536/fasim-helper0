@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store'
+import { writable, type Writable } from 'svelte/store'
 import type { Pack, PackWritable, Todo } from '../types.d'
 
 // to prevent typos
@@ -18,22 +18,30 @@ let nextPackId = getKeyAsNumberOrDefault('nextPackId', 1)
 let savesMeta = getSavesMetaOrDefault()
 
 // stores
-export const packs = writable(getPacksOrDefault(currentSaveId))
+export const packs = createPacksStore()
 
-export function addPack() {
-	packs.update((quo) => {
-		quo.push({
-			id: nextPackId,
-			title: `Unnamed Pack #${nextPackId}`,
-			buys: [],
-			sells: [],
-			isPurchased: false,
-			isArchived: false
-		})
-		return quo
-	})
+function createPacksStore() {
+	const { subscribe, set, update } = writable(getPacksOrDefault(currentSaveId))
 
-	nextPackId++
+	const save = () => {
+		
+	}
+
+	return {
+		subscribe,
+		addPack: () =>
+			update((quo) => {
+				quo.push({
+					id: nextPackId,
+					title: `Unnamed Pack #${nextPackId}`,
+					buys: [],
+					sells: [],
+					isPurchased: false,
+					isArchived: false
+				})
+				return quo
+			})
+	}
 }
 
 // local storage fetching with defaults
@@ -57,8 +65,11 @@ function getSavesMetaOrDefault(): Map<number, string> {
 
 function getPacksOrDefault(id: number): Pack[] {
 	if (typeof localStorage !== 'undefined') {
+		console.log('trying to load from localStorage')
 		let packs = localStorage.getItem(packsString(id))
 		if (packs) return JSON.parse(packs) as Pack[]
 	}
+
+	console.log('loading empty array for packs')
 	return []
 }

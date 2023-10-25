@@ -3,7 +3,7 @@
 	import IconButton from '$lib/components/IconButton.svelte'
 	import Plus from '$lib/svg/Plus.svelte'
 	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
-	import { addPack, packs } from '$lib/stores/stores'
+	import { packs } from '$lib/stores/stores'
 	import type { Pack } from '$lib/types'
 	import { onMount } from 'svelte'
 
@@ -34,7 +34,7 @@
 
 	function onAddPack() {
 		console.log('adding pack')
-		addPack()
+		packs.addPack()
 	}
 
 	function onHistory() {
