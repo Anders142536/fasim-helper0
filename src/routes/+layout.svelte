@@ -1,8 +1,6 @@
 <script lang="ts">
 	import "../app.postcss";
 	import { AppShell, TabAnchor, TabGroup } from '@skeletonlabs/skeleton'
-	import { page } from '$app/stores'
-  import NavButton from '$lib/components/NavButton.svelte'
 	import NavTab from "./NavTab.svelte"
 </script>
 
