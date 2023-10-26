@@ -4,7 +4,8 @@
 	import NavTab from "./NavTab.svelte"
 </script>
 
-<AppShell>
+<AppShell
+	slotPageContent='h-full'>
 	<slot />
 	<svelte:fragment slot="footer">
 		<TabGroup

@@ -1,15 +1,16 @@
 import { writable, type Writable } from 'svelte/store'
 import type { Pack, PackWritable, Todo } from '../types.d'
+import { browser } from '$app/environment'
 
 // to prevent typos
-const calendarString = (id: number): string => {
-	return `calendar-${id}`
+const calendarString = (): string => {
+	return `calendar-${currentSaveId}`
 }
-const todosString = (id: number): string => {
-	return `todos-${id}`
+const todosString = (): string => {
+	return `todos-${currentSaveId}`
 }
-const packsString = (id: number): string => {
-	return `packs-${id}`
+const packsString = (): string => {
+	return `packs-${currentSaveId}`
 }
 
 let currentSaveId = getKeyAsNumberOrDefault('currentSaveId', 0)
@@ -20,12 +21,18 @@ let savesMeta = getSavesMetaOrDefault()
 // stores
 export const packs = createPacksStore()
 
+packs.subscribe(value => {
+	console.debug(`storing packs to local storage with currentSaveId ${currentSaveId}`)
+	if (browser) {
+		localStorage.setItem(packsString(), JSON.stringify(value))
+	}
+})
+
+
 function createPacksStore() {
+	console.log('creating packs store')
 	const { subscribe, set, update } = writable(getPacksOrDefault(currentSaveId))
 
-	const save = () => {
-		
-	}
 
 	return {
 		subscribe,
@@ -39,6 +46,7 @@ function createPacksStore() {
 					isPurchased: false,
 					isArchived: false
 				})
+				nextPackId++
 				return quo
 			})
 	}
@@ -46,7 +54,7 @@ function createPacksStore() {
 
 // local storage fetching with defaults
 function getKeyAsNumberOrDefault(key: string, def: number): number {
-	if (typeof localStorage !== 'undefined') {
+	if (browser) {
 		let value = localStorage.getItem(key)
 		if (value) return parseInt(value)
 	}
@@ -54,7 +62,7 @@ function getKeyAsNumberOrDefault(key: string, def: number): number {
 }
 
 function getSavesMetaOrDefault(): Map<number, string> {
-	if (typeof localStorage !== 'undefined') {
+	if (browser) {
 		let value = localStorage.getItem('savesMeta')
 		if (value) return JSON.parse(value)
 	}
@@ -64,12 +72,13 @@ function getSavesMetaOrDefault(): Map<number, string> {
 }
 
 function getPacksOrDefault(id: number): Pack[] {
-	if (typeof localStorage !== 'undefined') {
+	if (browser) {
 		console.log('trying to load from localStorage')
-		let packs = localStorage.getItem(packsString(id))
+		let packs = localStorage.getItem(packsString())
 		if (packs) return JSON.parse(packs) as Pack[]
 	}
 
 	console.log('loading empty array for packs')
 	return []
 }
+
