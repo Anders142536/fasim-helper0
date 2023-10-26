@@ -14,16 +14,13 @@
 </script>
 
 <ViewLayout>
-	<svelte:fragment slot='content'>
-
-		{#each $packs as pack}
-			<div class='card p-4'>
-				{`Pack: ${pack.title}`}
-			</div>
-		{:else}
-			No packs defined
-		{/each}
-	</svelte:fragment>
+	{#each $packs as pack}
+		<div class='card p-4'>
+			{`Pack: ${pack.title}`}
+		</div>
+	{:else}
+		No packs defined
+	{/each}
 
 	<svelte:fragment slot="toolbar">
 		<IconButton label="Add pack" onClick={() => packs.addPack()}>
