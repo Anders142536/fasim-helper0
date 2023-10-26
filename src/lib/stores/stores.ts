@@ -3,28 +3,37 @@ import type { Pack, PackWritable, Todo } from '../types.d'
 import { browser } from '$app/environment'
 
 // to prevent typos
-const calendarString = (): string => {
-	return `calendar-${currentSaveId}`
+const strWithId = (str: string): string => {
+	return `${str}-${currentSaveId}`
 }
-const todosString = (): string => {
-	return `todos-${currentSaveId}`
+const calendarStr = (): string => {
+	return strWithId('calendar')
 }
-const packsString = (): string => {
-	return `packs-${currentSaveId}`
+const todosStr = (): string => {
+	return strWithId('todos')
+}
+const packsStr = (): string => {
+	return strWithId('packs')
+}
+const nextPackIdStr = (): string => {
+	return strWithId('nextPackId')
 }
 
+// stores & helpers
 let currentSaveId = getKeyAsNumberOrDefault('currentSaveId', 0)
 let nextSaveId = getKeyAsNumberOrDefault('nextSaveId', 1)
-let nextPackId = getKeyAsNumberOrDefault('nextPackId', 1)
+let nextPackId = getKeyAsNumberOrDefault(nextPackIdStr(), 1)
 let savesMeta = getSavesMetaOrDefault()
-
-// stores
 export const packs = createPacksStore()
+
+const saveNextPackId = () => localStorage.setItem(nextPackIdStr(), nextPackId.toString())
+
+
 
 packs.subscribe(value => {
 	console.debug(`storing packs to local storage with currentSaveId ${currentSaveId}`)
 	if (browser) {
-		localStorage.setItem(packsString(), JSON.stringify(value))
+		localStorage.setItem(packsStr(), JSON.stringify(value))
 	}
 })
 
@@ -47,6 +56,7 @@ function createPacksStore() {
 					isArchived: false
 				})
 				nextPackId++
+				saveNextPackId()
 				return quo
 			})
 	}
@@ -74,7 +84,7 @@ function getSavesMetaOrDefault(): Map<number, string> {
 function getPacksOrDefault(id: number): Pack[] {
 	if (browser) {
 		console.log('trying to load from localStorage')
-		let packs = localStorage.getItem(packsString())
+		let packs = localStorage.getItem(packsStr())
 		if (packs) return JSON.parse(packs) as Pack[]
 	}
 
