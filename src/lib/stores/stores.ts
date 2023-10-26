@@ -3,45 +3,40 @@ import type { Pack, PackWritable, Todo } from '../types.d'
 import { browser } from '$app/environment'
 
 // to prevent typos
-const strWithId = (str: string): string => {
-	return `${str}-${currentSaveId}`
-}
-const calendarStr = (): string => {
-	return strWithId('calendar')
-}
-const todosStr = (): string => {
-	return strWithId('todos')
-}
-const packsStr = (): string => {
-	return strWithId('packs')
-}
-const nextPackIdStr = (): string => {
-	return strWithId('nextPackId')
-}
+const CURR_SAVE_ID = 'current-save-id'
+const NEXT_SAVE_ID = 'next-save-id'
+const strWithId = (str: string): string => `${str}-${currentSaveId}`
+const calendarStr = (): string => strWithId('calendar')
+const todosStr = (): string => strWithId('todos')
+const packsStr = (): string => strWithId('packs')
+const nextPackIdStr = (): string => strWithId('next-pack-id')
 
 // stores & helpers
-let currentSaveId = getKeyAsNumberOrDefault('currentSaveId', 0)
-let nextSaveId = getKeyAsNumberOrDefault('nextSaveId', 1)
+let currentSaveId = getKeyAsNumberOrDefault(CURR_SAVE_ID, 0)
+let nextSaveId = getKeyAsNumberOrDefault(NEXT_SAVE_ID, 1)
 let nextPackId = getKeyAsNumberOrDefault(nextPackIdStr(), 1)
 let savesMeta = getSavesMetaOrDefault()
 export const packs = createPacksStore()
 
-const saveNextPackId = () => localStorage.setItem(nextPackIdStr(), nextPackId.toString())
+const saveCurrentSaveId = () =>
+	localStorage.setItem(CURR_SAVE_ID, currentSaveId.toString())
+const saveNextSaveId = () =>
+	localStorage.setItem(NEXT_SAVE_ID, nextSaveId.toString())
+const saveNextPackId = () =>
+	localStorage.setItem(nextPackIdStr(), nextPackId.toString())
 
-
-
-packs.subscribe(value => {
-	console.debug(`storing packs to local storage with currentSaveId ${currentSaveId}`)
+packs.subscribe((value) => {
+	console.debug(
+		`storing packs to local storage with currentSaveId ${currentSaveId}`
+	)
 	if (browser) {
 		localStorage.setItem(packsStr(), JSON.stringify(value))
 	}
 })
 
-
 function createPacksStore() {
 	console.log('creating packs store')
 	const { subscribe, set, update } = writable(getPacksOrDefault(currentSaveId))
-
 
 	return {
 		subscribe,
@@ -91,4 +86,3 @@ function getPacksOrDefault(id: number): Pack[] {
 	console.log('loading empty array for packs')
 	return []
 }
-
