@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ViewLayout from '../ViewLayout.svelte'
-	import IconButton from '$lib/components/IconButton.svelte'
+	import IconTextButton from '$lib/components/IconTextButton.svelte'
 	import Plus from '$lib/svg/Plus.svelte'
 	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
 	import { packs } from '$lib/stores/stores'
@@ -22,11 +22,11 @@
 	{/each}
 
 	<svelte:fragment slot="toolbar">
-		<IconButton label="Add pack" onClick={() => packs.addPack()}>
+		<IconTextButton label="Add pack" onClick={() => packs.addPack()}>
 			<Plus />
-		</IconButton>
-		<IconButton label="History" onClick={onHistory}>
+		</IconTextButton>
+		<IconTextButton label="History" onClick={onHistory}>
 			<ArchiveBox	/>
-		</IconButton>
+		</IconTextButton>
 	</svelte:fragment>
 </ViewLayout>

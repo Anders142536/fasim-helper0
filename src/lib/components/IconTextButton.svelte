@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let label: string = ''
+	export let label: string | null = null
 	export let onClick: () => void
 </script>
 
 <button 
 	on:click={onClick}
-	class='btn'>
+	class={label === null ? 'btn-icon btn-icon-sm' : 'btn'}>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class='w-6 h-6'
@@ -16,6 +16,8 @@
 	>
 		<slot />
 	</svg>
-	<p class='w-max'>{label}</p>
+	{#if label !== null }	
+		<p class='w-max'>{label}</p>
+	{/if}
 </button>
 

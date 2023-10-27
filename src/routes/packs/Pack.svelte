@@ -1,5 +1,5 @@
 <script lang="ts">
-	import IconButton from "$lib/components/IconButton.svelte"
+	import IconTextButton from "$lib/components/IconTextButton.svelte"
 	import ArchiveBoxX from "$lib/svg/ArchiveBoxX.svelte"
 	import Check from "$lib/svg/Check.svelte"
 	import Pencil from "$lib/svg/Pencil.svelte"
@@ -16,25 +16,25 @@
 </script>
 
 
-<div class='card p-4'>
-	<div class='flex justify-between'>
-		<h3>{pack.title}</h3>
-		<div class='flex gap-1'>
-			<IconButton onClick={() => {}}>
+<div class='card variant-filled-surface p-4'>
+	<div class='flex items-center justify-between'>
+		<h3 class='h3'>{pack.title}</h3>
+		<div class='flex'>
+			<IconTextButton onClick={() => {}}>
 				<Check />
-			</IconButton>
-			<IconButton onClick={() => {}}>
+			</IconTextButton>
+			<IconTextButton onClick={() => {}}>
 				<Pencil />
-			</IconButton>
-			<IconButton onClick={() => {}}>
+			</IconTextButton>
+			<IconTextButton onClick={() => {}}>
 				<ArchiveBoxX />
-			</IconButton>
+			</IconTextButton>
 		</div>
 	</div>
 	<PackItemList header='Buy' {editMode} list={pack.buys} />
 	<PackItemList header='Sell' {editMode} list={pack.sells} />
 	<div class='flex justify-end'>
-		<h4>{`Pack Cost: ${totalCost()}€`}</h4>
+		<h4 class='h4'>{`Pack Cost: ${totalCost()}€`}</h4>
 	</div>
 </div>
 
