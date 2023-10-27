@@ -4,6 +4,7 @@
 	import Plus from '$lib/svg/Plus.svelte'
 	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
 	import { packs } from '$lib/stores/stores'
+	import Pack from './Pack.svelte'
 
 
 	function onHistory() {
@@ -15,9 +16,7 @@
 
 <ViewLayout>
 	{#each $packs as pack}
-		<div class='card p-4'>
-			{`Pack: ${pack.title}`}
-		</div>
+		<Pack {pack} />
 	{:else}
 		No packs defined
 	{/each}
