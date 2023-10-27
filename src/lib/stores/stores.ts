@@ -1,4 +1,5 @@
-import { writable, type Writable } from 'svelte/store'
+import { get, writable, type Writable } from 'svelte/store'
+import { localStorageStore } from '@skeletonlabs/skeleton'
 import type { Pack, PackWritable, Todo } from '../types.d'
 import { browser } from '$app/environment'
 
@@ -14,7 +15,7 @@ const nextPackIdStr = (): string => strWithId('next-pack-id')
 // stores & helpers
 let currentSaveId = getKeyAsNumberOrDefault(CURR_SAVE_ID, 0)
 let nextSaveId = getKeyAsNumberOrDefault(NEXT_SAVE_ID, 1)
-let nextPackId = getKeyAsNumberOrDefault(nextPackIdStr(), 1)
+let nextPackId = localStorageStore(nextPackIdStr(), 1)
 let savesMeta = getSavesMetaOrDefault()
 export const packs = createPacksStore()
 
@@ -22,8 +23,6 @@ const saveCurrentSaveId = () =>
 	localStorage.setItem(CURR_SAVE_ID, currentSaveId.toString())
 const saveNextSaveId = () =>
 	localStorage.setItem(NEXT_SAVE_ID, nextSaveId.toString())
-const saveNextPackId = () =>
-	localStorage.setItem(nextPackIdStr(), nextPackId.toString())
 
 packs.subscribe((value) => {
 	console.debug(
@@ -43,15 +42,14 @@ function createPacksStore() {
 		addPack: () =>
 			update((quo) => {
 				quo.push({
-					id: nextPackId,
-					title: `Unnamed Pack #${nextPackId}`,
+					id: get(nextPackId),
+					title: `Unnamed Pack #${get(nextPackId)}`,
 					buys: [],
 					sells: [],
 					isPurchased: false,
 					isArchived: false
 				})
-				nextPackId++
-				saveNextPackId()
+				nextPackId.update((n) => n + 1)
 				return quo
 			})
 	}
