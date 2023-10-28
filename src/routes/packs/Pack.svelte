@@ -12,7 +12,27 @@
 
 	export let pack: Pack
 
+
 	let editMode = false
+	let beforeEdit: Pack | undefined
+
+	const startEditMode = () => {
+		editMode = true
+		beforeEdit = structuredClone(pack)
+	}
+
+	const cancelEditMode = () => {
+		editMode = false
+		console.log(JSON.stringify(pack))
+		console.log(JSON.stringify(beforeEdit))
+		pack = beforeEdit!
+	}
+
+	const confirmEdits = () => {
+		editMode = false
+		packs.save(pack)
+	}
+
 
 	const totalCost = () : number => {
 		return 666
@@ -35,22 +55,16 @@
 
 			<!-- EDIT MODE -->
 			{:else if editMode }
-				<IconTextButton onClick={() => {
-						editMode = false
-						packs.save(pack)
-					}} >
+				<IconTextButton onClick={() => confirmEdits()} >
 					<Check />
 				</IconTextButton>
-				<IconTextButton onClick={() => {
-						editMode = false
-					// TODO cancel
-					}} >
+				<IconTextButton onClick={() => cancelEditMode()} >
 					<XMark />
 				</IconTextButton>
 
 			<!-- VIEW MODE -->
 			{:else}
-				<IconTextButton onClick={() => editMode = true}>
+				<IconTextButton onClick={() => startEditMode()}>
 					<Pencil />
 				</IconTextButton>
 				<IconTextButton onClick={() =>  packs.toggleArchived(pack.id)}>
@@ -61,7 +75,7 @@
 	</div>
 	<PackItemList header='Buy' {editMode} list={pack.buys} />
 	<PackItemList header='Sell' {editMode} list={pack.sells} />
-	<div class='flex justify-end'>
+	<div class='flex px-8 justify-end'>
 		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[100px]'>{`${totalCost()}€`}</h4>
 	</div>
 </div>

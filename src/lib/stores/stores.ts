@@ -53,6 +53,9 @@ function createPacksStore() {
 			}),
 		save: (pack: Pack) =>
 			update((quo) => {
+				console.log(
+					`attempting to save pack with values: ${JSON.stringify(pack)}`
+				)
 				return quo
 			})
 	}
