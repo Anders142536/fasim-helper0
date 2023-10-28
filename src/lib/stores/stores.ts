@@ -34,16 +34,9 @@ function createPacksStore() {
 					title: `Unnamed Pack #${get(nextPackId)}`,
 					buys: [],
 					sells: [],
-					isPurchased: false,
 					isArchived: false
 				})
 				nextPackId.update((n) => n + 1)
-				return quo
-			}),
-		togglePurchased: (id: number) =>
-			update((quo) => {
-				let found = quo.find((e) => e.id === id)
-				if (found) found.isPurchased = !found.isPurchased
 				return quo
 			}),
 		toggleArchived: (id: number) =>

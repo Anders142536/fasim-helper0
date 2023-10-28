@@ -7,7 +7,6 @@ type Pack = {
 	title: string
 	buys: PackEntry[]
 	sells: PackEntry[]
-	isPurchased: boolean
 	isArchived: boolean
 }
 

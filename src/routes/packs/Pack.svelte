@@ -50,15 +50,6 @@
 
 			<!-- VIEW MODE -->
 			{:else}
-				{#if pack.isPurchased}
-					<IconTextButton onClick={() => packs.togglePurchased(pack.id)} >
-						<ArrowLeft />
-					</IconTextButton>
-				{:else}
-					<IconTextButton onClick={() => packs.togglePurchased(pack.id)}>
-						<Banknotes />
-					</IconTextButton>
-				{/if}
 				<IconTextButton onClick={() => editMode = true}>
 					<Pencil />
 				</IconTextButton>
