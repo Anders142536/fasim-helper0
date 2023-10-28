@@ -10,9 +10,7 @@
 	export let editMode: boolean
 
 	const addEntry = () => {
-		let biggestId = 3
 		list.push({
-			id: biggestId,
 			name: 'New Entry',
 			type: PackEntryType.UNKNOWN,
 			price: 0

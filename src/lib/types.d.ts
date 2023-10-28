@@ -11,7 +11,6 @@ type Pack = {
 }
 
 type PackEntry = {
-	id: number
 	name: string
 	type: PackEntryType
 	price: number
