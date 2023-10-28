@@ -12,7 +12,7 @@
 	href={route}
 	selected={$page.url.pathname === route}>
 	<svelte:fragment slot='lead'>
-		<img class='m-auto' src='/icons/{img}.png' alt={label} />
+		<img class='m-auto' height='48' width='48' src='/icons/{img}.png' alt={label} />
 	</svelte:fragment>
 	{label}
 </TabAnchor>
