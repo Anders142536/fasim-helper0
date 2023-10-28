@@ -39,6 +39,28 @@ function createPacksStore() {
 				})
 				nextPackId.update((n) => n + 1)
 				return quo
+			}),
+		togglePurchased: (id: number) =>
+			update((quo) => {
+				let found = quo.find((e) => e.id === id)
+				if (found) found.isPurchased = !found.isPurchased
+				return quo
+			}),
+		toggleArchived: (id: number) =>
+			update((quo) => {
+				let found = quo.find((e) => e.id === id)
+				if (found) found.isArchived = !found.isArchived
+				return quo
+			}),
+		delete: (id: number) =>
+			update((quo) => {
+				let found = quo.find((e) => e.id === id)
+				if (found) quo.splice(quo.indexOf(found), 1)
+				return quo
+			}),
+		save: (pack: Pack) =>
+			update((quo) => {
+				return quo
 			})
 	}
 }
