@@ -17,11 +17,4 @@ type PackEntry = {
 	price: number
 }
 
-enum PackEntryType {
-	TRACTOR = 'Tractor',
-	HARVESTER = 'Harvester',
-	SEEDER = 'Seeder'
-	// TODO: add others
-}
-
-export { Calendar, Todo, Pack, PackEntry, PackEntryType, PackWritable }
+export { Calendar, Todo, Pack, PackEntry }
