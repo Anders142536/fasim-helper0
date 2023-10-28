@@ -20,7 +20,7 @@
 </script>
 
 
-<div class='card variant-filled-surface p-4 border-2 {pack.isArchived ? 'border-dashed' : 'border-solid'}'>
+<div class='card variant-filled-surface p-4 border-neutral-600 border-2 {pack.isArchived ? 'border-dashed' : 'border-solid'}'>
 	<div class='flex items-center justify-between'>
 		<h3 class='h3'>{pack.title}</h3>
 		<div class='flex'>

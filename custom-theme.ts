@@ -7,18 +7,18 @@ export const myCustomTheme: CustomThemeConfig = {
 		'--theme-font-family-base': `system-ui`,
 		'--theme-font-family-heading': `system-ui`,
 		'--theme-font-color-base': '0 0 0',
-		'--theme-font-color-dark': '255 255 255',
+		'--theme-font-color-dark': '218 218 218',
 		'--theme-rounded-base': '9999px',
 		'--theme-rounded-container': '8px',
 		'--theme-border-base': '1px',
 		// =~= Theme On-X Colors =~=
-		'--on-primary': '255 255 255',
-		'--on-secondary': '255 255 255',
+		'--on-primary': '218 218 218',
+		'--on-secondary': '218 218 218',
 		'--on-tertiary': '0 0 0',
 		'--on-success': '0 0 0',
 		'--on-warning': '0 0 0',
-		'--on-error': '255 255 255',
-		'--on-surface': '255 255 255',
+		'--on-error': '218 218 218',
+		'--on-surface': '218 218 218',
 		// =~= Theme Colors  =~=
 		// primary | #2d691e
 		'--color-primary-50': '224 233 221', // #e0e9dd
