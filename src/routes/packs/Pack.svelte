@@ -35,7 +35,9 @@
 
 
 	const totalCost = () : number => {
-		return 666
+		let priceBuys = pack.buys.reduce((acc, curr) => acc + curr.price, 0)
+		let priceSells = pack.sells.reduce((acc, curr) => acc + curr.price, 0) 
+		return priceBuys - priceSells
 	}
 </script>
 
