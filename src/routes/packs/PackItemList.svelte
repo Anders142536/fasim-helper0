@@ -32,16 +32,27 @@
 	</IconTextButton>
 </div>
 <div class='w-full pl-4'>
-		<div class='grid grid-definition items-center justify-between'>
+		<div class='grid grid-definition gap-1 items-center justify-between'>
 	{#each list as entry}
+		{#if editMode}
+			<input class='input py-1 px-3 {entry.name ? '' : 'input-error'}' bind:value={entry.name} />
+			<select class='select' bind:value={entry.type} >
+				{#each Object.values(PackEntryType) as type}
+					<option value={type}>{type}</option>
+				{/each}
+			</select>
+			<input class='input py-1 px-3 text-right {entry.price === null ? 'input-error' : ''}' type='number' bind:value={entry.price} />
+		{:else}
 			<div>{entry.name}</div>
 			<div>{entry.type}</div>
-			<div class='text-right'>{`${entry.price}€`}</div>
-			<div>
-				<IconTextButton visible={editMode} onClick={() => removeEntry(entry)}>
-					<XMark />
-				</IconTextButton>
-			</div>
+			<div class='text-right'>{`${entry.price}`}</div>
+		{/if}
+		<p>€</p>
+		<div>
+			<IconTextButton visible={editMode} onClick={() => removeEntry(entry)}>
+				<XMark />
+			</IconTextButton>
+		</div>
 	{:else}
 		No entries
 	{/each}
@@ -49,11 +60,8 @@
 </div>
 
 
-	<style>
-
+<style>
 	.grid-definition {
-		grid-template-columns: 50% 1fr 1fr max-content;
-
+		grid-template-columns: 50% 1fr 1fr max-content max-content;
 	}
-
-	</style>
+</style>

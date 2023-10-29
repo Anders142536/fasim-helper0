@@ -14,29 +14,33 @@
 
 
 	let editMode = false
-	let beforeEdit: Pack | undefined
+	let edits: Pack
 
 	const startEditMode = () => {
 		editMode = true
-		beforeEdit = structuredClone(pack)
+		edits = structuredClone(pack)
 	}
 
 	const cancelEditMode = () => {
 		editMode = false
-		console.log(JSON.stringify(pack))
-		console.log(JSON.stringify(beforeEdit))
-		pack = beforeEdit!
 	}
 
 	const confirmEdits = () => {
 		editMode = false
-		packs.save(pack)
+		packs.save(edits)
 	}
 
-
 	const totalCost = () : number => {
+		console.log(`calculating total costs from pack ${JSON.stringify(pack)}`)
 		let priceBuys = pack.buys.reduce((acc, curr) => acc + curr.price, 0)
 		let priceSells = pack.sells.reduce((acc, curr) => acc + curr.price, 0) 
+		return priceBuys - priceSells
+	}
+
+	const totalCostEdits = () : number => {
+		console.log(`calculating total costs from edits ${JSON.stringify(edits)}`)
+		let priceBuys = edits.buys.reduce((acc, curr) => acc + curr.price, 0)
+		let priceSells = edits.sells.reduce((acc, curr) => acc + curr.price, 0) 
 		return priceBuys - priceSells
 	}
 </script>
@@ -44,7 +48,11 @@
 
 <div class='card variant-filled-surface p-4 border-neutral-600 border-2 {pack.isArchived ? 'border-dashed' : 'border-solid'}'>
 	<div class='flex items-center justify-between'>
-		<h3 class='h3'>{pack.title}</h3>
+		{#if editMode}
+			<input class='input px-4 py-2 h3' bind:value={edits.title} />
+		{:else}
+			<h3 class='h3'>{pack.title}</h3>
+		{/if}
 		<div class='flex'>
 			<!-- ARCHIVE MODE -->
 			{#if pack.isArchived}
@@ -75,10 +83,10 @@
 			{/if}
 		</div>
 	</div>
-	<PackItemList header='Buy' {editMode} list={pack.buys} />
-	<PackItemList header='Sell' {editMode} list={pack.sells} />
+	<PackItemList header='Buy' {editMode} list={editMode ? edits.buys : pack.buys} />
+	<PackItemList header='Sell' {editMode} list={editMode ? edits.sells : pack.sells} />
 	<div class='flex px-8 justify-end'>
-		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[100px]'>{`${totalCost()}€`}</h4>
+		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[100px]'>{`${editMode ? totalCostEdits() : totalCost()} €`}</h4>
 	</div>
 </div>
 

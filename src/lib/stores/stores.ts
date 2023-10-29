@@ -56,6 +56,8 @@ function createPacksStore() {
 				console.log(
 					`attempting to save pack with values: ${JSON.stringify(pack)}`
 				)
+				let found = quo.find((e) => e.id === pack.id)
+				if (found) quo[quo.indexOf(found)] = pack
 				return quo
 			})
 	}
