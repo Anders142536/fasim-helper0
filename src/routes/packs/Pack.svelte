@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Card from "$lib/components/Card.svelte"
 	import IconTextButton from "$lib/components/IconTextButton.svelte"
 	import { packs } from "$lib/stores/stores"
 	import ArchiveBoxX from "$lib/svg/ArchiveBoxX.svelte"
@@ -46,8 +47,7 @@
 	}
 </script>
 
-
-<div class='card variant-filled-surface p-4 border-neutral-600 border-2 {pack.isArchived ? 'border-dashed' : 'border-solid'}'>
+<Card history={pack.isArchived}>
 	<div class='flex items-center justify-between'>
 		{#if editMode}
 			<input class='input px-4 py-2 h3' bind:value={edits.title} />
@@ -89,5 +89,4 @@
 	<div class='flex px-8 gap-2 justify-end'>
 		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[120px]'>{`${(editMode ? priceEdits : pricePack).toLocaleString()} €`}</h4>
 	</div>
-</div>
-
+</Card>
