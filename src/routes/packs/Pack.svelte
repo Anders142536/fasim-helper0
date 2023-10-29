@@ -54,6 +54,8 @@
 		{:else}
 			<h3 class='h3'>{pack.title}</h3>
 		{/if}
+
+		<!-- Buttons right -->
 		<div class='flex'>
 			<!-- ARCHIVE MODE -->
 			{#if pack.isArchived}

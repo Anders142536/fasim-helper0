@@ -1,8 +1,18 @@
-type Calendar = {}
+export type Calendar = {}
 
-type Todo = {}
+export type TodoList = {
+	id: number
+	title: string
+	description?: string
+	todos: Todo[]
+}
 
-type Pack = {
+export type Todo = {
+	done: boolean
+	text: string
+}
+
+export type Pack = {
 	id: number
 	title: string
 	buys: PackEntry[]
@@ -10,12 +20,10 @@ type Pack = {
 	isArchived: boolean
 }
 
-type PackEntry = {
+export type PackEntry = {
 	name: string
 	type: PackEntryType
 	price: number
 }
 
-type MonthData = {}
-
-export { Calendar, Todo, Pack, PackEntry, MonthData }
+export type MonthData = {}
