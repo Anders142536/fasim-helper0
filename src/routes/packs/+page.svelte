@@ -5,6 +5,7 @@
 	import ArchiveBox from '$lib/svg/ArchiveBox.svelte'
 	import { packs } from '$lib/stores/stores'
 	import Pack from './Pack.svelte'
+	import PackIcon from '$lib/svg/PackIcon.svelte'
 
 	let showHistory = false
 
@@ -24,7 +25,7 @@
 		</IconTextButton>
 		{#if showHistory }
 			<IconTextButton label="Active Packs" onClick={() => showHistory = !showHistory}>
-				<ArchiveBox	/>
+				<PackIcon />
 			</IconTextButton>
 		{:else}
 			<IconTextButton label="History" onClick={() => showHistory = !showHistory}>

@@ -2,10 +2,10 @@
 	import IconTextButton from "$lib/components/IconTextButton.svelte"
 	import { packs } from "$lib/stores/stores"
 	import ArchiveBoxX from "$lib/svg/ArchiveBoxX.svelte"
-	import ArrowLeft from "$lib/svg/ArrowLeft.svelte"
-	import Banknotes from "$lib/svg/Banknotes.svelte"
 	import Check from "$lib/svg/Check.svelte"
 	import Pencil from "$lib/svg/Pencil.svelte"
+	import Trash from "$lib/svg/Trash.svelte"
+	import Undo from "$lib/svg/Undo.svelte"
 	import XMark from "$lib/svg/XMark.svelte"
 	import type { Pack } from "$lib/types"
 	import PackItemList from "./PackItemList.svelte"
@@ -58,10 +58,10 @@
 			<!-- ARCHIVE MODE -->
 			{#if pack.isArchived}
 				<IconTextButton onClick={() => packs.toggleArchived(pack.id)} >
-					<ArrowLeft />
+					<Undo />
 				</IconTextButton>
 				<IconTextButton onClick={() => packs.delete(pack.id)} >
-					<XMark />
+					<Trash />
 				</IconTextButton>
 
 			<!-- EDIT MODE -->

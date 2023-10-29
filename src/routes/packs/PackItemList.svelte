@@ -2,6 +2,7 @@
 	import IconTextButton from "$lib/components/IconTextButton.svelte"
 	import { PackEntryType } from "$lib/enums/PackEntryType"
 	import Plus from "$lib/svg/Plus.svelte"
+	import Trash from "$lib/svg/Trash.svelte"
 	import XMark from "$lib/svg/XMark.svelte"
 	import type { PackEntry } from "$lib/types"
 
@@ -50,7 +51,7 @@
 		<p>€</p>
 		<div>
 			<IconTextButton visible={editMode} onClick={() => removeEntry(entry)}>
-				<XMark />
+				<Trash />
 			</IconTextButton>
 		</div>
 	{:else}
