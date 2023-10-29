@@ -14,7 +14,22 @@
 
 
 	let editMode = false
-	let edits: Pack
+	let edits = structuredClone(pack)
+
+	let pricePack = 0
+	let priceEdits = 0
+
+	$: {
+		let priceBuys = pack.buys.reduce((acc, curr) => acc + curr.price, 0)
+		let priceSells = pack.sells.reduce((acc, curr) => acc + curr.price, 0) 
+		pricePack = priceBuys - priceSells
+	}
+
+	$: {
+		let priceBuys = edits.buys.reduce((acc, curr) => acc + curr.price, 0)
+		let priceSells = edits.sells.reduce((acc, curr) => acc + curr.price, 0) 
+		priceEdits = priceBuys - priceSells
+	}
 
 	const startEditMode = () => {
 		editMode = true
@@ -28,20 +43,6 @@
 	const confirmEdits = () => {
 		editMode = false
 		packs.save(edits)
-	}
-
-	const totalCost = () : number => {
-		console.log(`calculating total costs from pack ${JSON.stringify(pack)}`)
-		let priceBuys = pack.buys.reduce((acc, curr) => acc + curr.price, 0)
-		let priceSells = pack.sells.reduce((acc, curr) => acc + curr.price, 0) 
-		return priceBuys - priceSells
-	}
-
-	const totalCostEdits = () : number => {
-		console.log(`calculating total costs from edits ${JSON.stringify(edits)}`)
-		let priceBuys = edits.buys.reduce((acc, curr) => acc + curr.price, 0)
-		let priceSells = edits.sells.reduce((acc, curr) => acc + curr.price, 0) 
-		return priceBuys - priceSells
 	}
 </script>
 
@@ -85,8 +86,8 @@
 	</div>
 	<PackItemList header='Buy' {editMode} list={editMode ? edits.buys : pack.buys} />
 	<PackItemList header='Sell' {editMode} list={editMode ? edits.sells : pack.sells} />
-	<div class='flex px-8 justify-end'>
-		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[100px]'>{`${editMode ? totalCostEdits() : totalCost()} €`}</h4>
+	<div class='flex px-8 gap-2 justify-end'>
+		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[120px]'>{`${(editMode ? priceEdits : pricePack).toLocaleString()} €`}</h4>
 	</div>
 </div>
 

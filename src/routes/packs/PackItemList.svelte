@@ -45,7 +45,7 @@
 		{:else}
 			<div>{entry.name}</div>
 			<div>{entry.type}</div>
-			<div class='text-right'>{`${entry.price}`}</div>
+			<div class='text-right'>{entry.price?.toLocaleString()}</div>
 		{/if}
 		<p>€</p>
 		<div>
