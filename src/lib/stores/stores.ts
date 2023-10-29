@@ -1,6 +1,7 @@
 import { get, writable, type Writable } from 'svelte/store'
 import { localStorageStore } from '@skeletonlabs/skeleton'
-import type { Pack } from '../types.d'
+import type { MonthData, Pack } from '../types.d'
+import { Month } from '$lib/enums/Month'
 
 // to prevent typos
 const CURR_SAVE_ID = 'current-save-id'
@@ -19,8 +20,30 @@ let nextPackId = localStorageStore(nextPackIdStr(), 1)
 let savesMeta = localStorageStore(SAVES_METADATA, {})
 
 // page stores
+export const calendar = createCalendarStore()
 
 export const packs = createPacksStore()
+
+// store creation
+
+function createCalendarStore() {
+	const { subscribe, set, update } = localStorageStore(
+		calendarStr(),
+		createCalendarDefault()
+	)
+
+	return {
+		subscribe
+	}
+}
+
+function createCalendarDefault() {
+	let def = new Map<Month, MonthData>()
+
+	for (const [key, value] of Object.entries(Month)) {
+		def.set(value, {})
+	}
+}
 
 function createPacksStore() {
 	const { subscribe, set, update } = localStorageStore<Pack[]>(packsStr(), [])

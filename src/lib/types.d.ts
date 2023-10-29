@@ -16,4 +16,6 @@ type PackEntry = {
 	price: number
 }
 
-export { Calendar, Todo, Pack, PackEntry }
+type MonthData = {}
+
+export { Calendar, Todo, Pack, PackEntry, MonthData }
