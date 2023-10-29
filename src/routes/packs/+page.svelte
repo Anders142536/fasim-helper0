@@ -22,8 +22,14 @@
 		<IconTextButton label="Add pack" onClick={() => packs.addPack()}>
 			<Plus />
 		</IconTextButton>
-		<IconTextButton label="History" onClick={() => showHistory = !showHistory}>
-			<ArchiveBox	/>
-		</IconTextButton>
+		{#if showHistory }
+			<IconTextButton label="Active Packs" onClick={() => showHistory = !showHistory}>
+				<ArchiveBox	/>
+			</IconTextButton>
+		{:else}
+			<IconTextButton label="History" onClick={() => showHistory = !showHistory}>
+				<ArchiveBox	/>
+			</IconTextButton>
+		{/if}
 	</svelte:fragment>
 </ViewLayout>
