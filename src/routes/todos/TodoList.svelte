@@ -4,6 +4,7 @@
 	import { todos } from "$lib/stores/stores"
 	import Check from "$lib/svg/Check.svelte"
 	import Pencil from "$lib/svg/Pencil.svelte"
+	import Trash from "$lib/svg/Trash.svelte"
 	import XMark from "$lib/svg/XMark.svelte"
 	import type { TodoList } from "$lib/types"
 
@@ -51,6 +52,9 @@
 			{:else}
 				<IconTextButton onClick={() => startEditMode()}>
 					<Pencil />
+				</IconTextButton>
+				<IconTextButton style='error' onClick={() => todos.deleteList(list.id)} >
+					<Trash />
 				</IconTextButton>
 			{/if}
 

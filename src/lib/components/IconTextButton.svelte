@@ -2,11 +2,25 @@
 	export let label: string | null = null
 	export let onClick: () => void
 	export let visible = true
+	export let style: string | null = null
+
+
+	const getCssString = () => {
+		let css = label === null ? 'btn-icon btn-icon-sm' : 'btn'
+
+		if (!visible)
+			css += ' invisible'
+
+		if (style)
+			css += ` text-${style}-500`
+		return css
+	}
 </script>
+
 
 <button 
 	on:click={onClick}
-	class={label === null ? 'btn-icon btn-icon-sm' : 'btn'}{visible ? '' : ' invisible'}>
+	class={getCssString()}>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class='w-6 h-6'
