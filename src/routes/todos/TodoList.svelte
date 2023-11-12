@@ -46,7 +46,7 @@
 
 <Card >
 	<!-- Header -->
-	<div class='flex items-center justify-between'>
+	<div class='flex items-center justify-between mb-2'>
 		{#if editMode}
 			<input class='input px-4 py-2 h3' bind:value={edits.title} />
 		{:else}
