@@ -4,23 +4,23 @@
 	export let visible = true
 	export let style: string | null = null
 
-	let css = ''
+	let cssButton = ''
 
 	$: {
-		css = label === null ? 'btn-icon btn-icon-sm' : 'btn'
+		cssButton = label === null ? 'btn-icon btn-icon-sm' : 'btn'
 
 		if (!visible)
-			css += ' invisible'
+			cssButton += ' invisible'
 
 		if (style)
-			css += ` text-${style}-500`
+			cssButton += ` ${style}`
 	}
 </script>
 
 
 <button 
 	on:click={onClick}
-	class={css}>
+	class={cssButton}>
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
 		class='w-6 h-6'
