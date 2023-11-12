@@ -80,10 +80,10 @@
 	</div>
 
 	{#if editMode}
-		{#each edits.todos as todo}
+		{#each edits.todos as entry}
 			<div class='flex'>
-				<input class='input py-1 px-3 {todo.text ? '' : 'input-error'}' bind:value={todo.text} />
-				<IconTextButton visible={editMode} onClick={() => removeTodo(todo)}>
+				<input class='input py-1 px-3 {entry.text ? '' : 'input-error'}' bind:value={entry.text} />
+				<IconTextButton visible={editMode} onClick={() => removeTodo(entry)}>
 					<Trash />
 				</IconTextButton>
 			</div>
@@ -91,9 +91,9 @@
 			No entries
 		{/each}
 	{:else}
-		{#each list.todos as todo}
+		{#each list.todos as entry}
 			<div>
-				{todo.text}
+				{entry.text}
 			</div>
 
 		{:else}
