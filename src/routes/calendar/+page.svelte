@@ -16,7 +16,7 @@
 
 <ViewLayout>
 
-	<h1>Calendar</h1>
+	<h1 class='h1'>Calendar</h1>
 	{#each Object.values(Month) as month}
 		{#if selected === month}
 			<ExpandedMonth />
