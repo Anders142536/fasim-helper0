@@ -35,18 +35,20 @@
 </div>
 
 <!-- List -->
-{#each list.todos as entry}
-	<label class='flex gap-2' >
-		<input class='checkbox !border-surface-400 flex-none'
-			checked={entry.done}
-			on:change={() => toggleCheck(entry)}
-			type='checkbox' />
-		<div class='{entry.done ? 'line-through' : ''}'>{entry.text}</div>
-	</label>
+<div class='flex flex-col gap-1'>
+	{#each list.todos as entry}
+		<label class='flex gap-2' >
+			<input class='checkbox !border-surface-400 flex-none mt-[2px]'
+				checked={entry.done}
+				on:change={() => toggleCheck(entry)}
+				type='checkbox' />
+			<div class='{entry.done ? 'line-through' : ''}'>{entry.text}</div>
+		</label>
 
-{:else}
-	<div class='text-center'>No entries</div>
-{/each}
+	{:else}
+		<div class='text-center'>No entries</div>
+	{/each}
+</div>
 
 
 

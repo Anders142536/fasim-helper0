@@ -61,7 +61,7 @@
 
 <!-- List -->
 {#each edits.todos as entry}
-	<div class='flex'>
+	<div class='flex items-start'>
 		<textarea class='textarea py-1 px-3 {entry.text ? '' : 'input-error'}' rows='1' bind:value={entry.text} />
 		<IconTextButton visible={editMode} onClick={() => removeTodo(entry)}>
 			<Trash />
