@@ -19,8 +19,10 @@ const config = {
 	},
 
 	plugins: [
+		require('@tailwindcss/forms'),
 		skeleton({
 			themes: {
+				preset: ['skeleton', 'crimson'],
 				custom: [myCustomTheme]
 			}
 		})

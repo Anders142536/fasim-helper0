@@ -3,14 +3,14 @@
 	import { todos } from "$lib/stores/stores"
 	import Plus from "$lib/svg/Plus.svelte"
 	import ViewLayout from "../ViewLayout.svelte"
-	import TodoList from "./TodoList.svelte"
+	import TodoListWrapper from "./TodoListWrapper.svelte"
 
 
 </script>
 
 <ViewLayout>
 	{#each $todos as list}
-		<TodoList {list} />
+		<TodoListWrapper {list} />
 	{:else}
 		No Todos defined
 	{/each}
