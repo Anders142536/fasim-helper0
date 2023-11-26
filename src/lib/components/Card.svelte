@@ -4,6 +4,6 @@
 
 </script>
 
-<div class='card variant-filled-surface p-4 border-neutral-600 border-2 {history ? 'border-dashed' : ''}'>
+<div class='card variant-filled-surface w-full p-4 border-neutral-600 border-2 {history ? 'border-dashed' : ''}'>
 	<slot />
 </div>

@@ -6,7 +6,6 @@
 	import type { Todo, TodoList } from "$lib/types"
 
 	export let list: TodoList
-
 	export let editMode: boolean
 
 	const startEditMode = () => {
@@ -46,7 +45,7 @@
 	</label>
 
 {:else}
-	No entries
+	<div class='text-center'>No entries</div>
 {/each}
 
 

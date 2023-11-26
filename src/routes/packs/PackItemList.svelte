@@ -32,31 +32,36 @@
 	</IconTextButton>
 </div>
 <div class='w-full pl-4'>
+	{#if list.length}
 		<div class='grid grid-definition gap-1 items-center justify-between'>
-	{#each list as entry}
-		{#if editMode}
-			<input class='input py-1 px-3 {entry.name ? '' : 'input-error'}' bind:value={entry.name} />
-			<select class='select' bind:value={entry.type} >
-				{#each Object.values(PackEntryType) as type}
-					<option value={type}>{type}</option>
-				{/each}
-			</select>
-			<input class='input py-1 px-3 text-right {entry.price === null ? 'input-error' : ''}' type='number' bind:value={entry.price} />
-		{:else}
-			<div>{entry.name}</div>
-			<div>{entry.type}</div>
-			<div class='text-right'>{entry.price?.toLocaleString()}</div>
-		{/if}
-		<p>€</p>
-		<div>
-			<IconTextButton visible={editMode} onClick={() => removeEntry(entry)}>
-				<Trash />
-			</IconTextButton>
+			{#each list as entry}
+				{#if editMode}
+					<input class='input py-1 px-3 {entry.name ? '' : 'input-error'}'
+						bind:value={entry.name} />
+					<select class='select' bind:value={entry.type} >
+						{#each Object.values(PackEntryType) as type}
+							<option value={type}>{type}</option>
+						{/each}
+					</select>
+					<input class='input py-1 px-3 text-right {entry.price === null ? 'input-error' : ''}'
+						type='number' 
+						bind:value={entry.price} />
+				{:else}
+					<div>{entry.name}</div>
+					<div>{entry.type}</div>
+					<div class='text-right'>{entry.price?.toLocaleString()}</div>
+				{/if}
+				<p>€</p>
+				<div>
+					<IconTextButton visible={editMode} onClick={() => removeEntry(entry)}>
+						<Trash />
+					</IconTextButton>
+				</div>
+			{/each}
 		</div>
 	{:else}
-		No entries
-	{/each}
-		</div>
+		<div class='text-center'>No entries</div>
+	{/if}
 </div>
 
 

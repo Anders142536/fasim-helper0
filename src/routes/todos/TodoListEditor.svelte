@@ -68,6 +68,6 @@
 		</IconTextButton>
 	</div>
 {:else}
-	No entries
+	<div class='text-center' >No entries</div>
 {/each}
 
