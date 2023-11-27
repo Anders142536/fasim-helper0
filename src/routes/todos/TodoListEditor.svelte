@@ -60,14 +60,17 @@
 
 
 <!-- List -->
-{#each edits.todos as entry}
-	<div class='flex items-start'>
-		<textarea class='textarea py-1 px-3 {entry.text ? '' : 'input-error'}' rows='1' bind:value={entry.text} />
-		<IconTextButton visible={editMode} onClick={() => removeTodo(entry)}>
-			<Trash />
-		</IconTextButton>
-	</div>
-{:else}
-	<div class='text-center' >No entries</div>
-{/each}
+<div class='flex flex-col gap-1'>
+	{#each edits.todos as entry}
+		<div class='flex items-start'>
+			<textarea class='textarea py-1 px-3 {entry.text ? '' : 'input-error'}'
+				rows='1' bind:value={entry.text} />
+			<IconTextButton visible={editMode} onClick={() => removeTodo(entry)}>
+				<Trash />
+			</IconTextButton>
+		</div>
+	{:else}
+		<div class='text-center' >No entries</div>
+	{/each}
+</div>
 
