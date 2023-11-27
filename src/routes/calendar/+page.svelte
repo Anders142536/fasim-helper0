@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Card from "$lib/components/Card.svelte"
 	import IconTextButton from "$lib/components/IconTextButton.svelte"
 	import { Month } from "$lib/enums/Month"
 	import Eye from "$lib/svg/Eye.svelte"
@@ -15,23 +16,25 @@
 </script>
 
 <ViewLayout>
-
-	<h1 class='h1'>Calendar</h1>
 	{#each Object.values(Month) as month}
-		{#if selected === month}
-			<ExpandedMonth />
-		{:else}
-			<CollapsedMonth />
-		{/if}
+		<Card>
+			{#if selected === month}
+				<ExpandedMonth />
+			{:else}
+				<CollapsedMonth {month}/>
+			{/if}
+		</Card>
 	{/each}
 
 	<svelte:fragment slot='toolbar'>
 		{#if showEmptyMonths}
-			<IconTextButton label='Hide empty months' onClick={() => toggleShowEmptyMonths()} >
+			<IconTextButton label='Hide empty months'
+				onClick={() => toggleShowEmptyMonths()} >
 				<EyeSlash />
 			</IconTextButton >
 		{:else}
-			<IconTextButton label='Show empty months' onClick={() => toggleShowEmptyMonths()} >
+			<IconTextButton label='Show empty months'
+				onClick={() => toggleShowEmptyMonths()} >
 				<Eye />
 			</IconTextButton >
 		{/if}
