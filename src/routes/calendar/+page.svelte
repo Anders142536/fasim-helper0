@@ -7,6 +7,7 @@
 	import ViewLayout from "../ViewLayout.svelte"
 	import CollapsedMonth from "./CollapsedMonth.svelte"
 	import ExpandedMonth from "./ExpandedMonth.svelte"
+	import FiveColumnCalendarGrid from "./FiveColumnCalendarGrid.svelte"
 
 	let showEmptyMonths = true
 	let selected: Month | null = null
@@ -16,6 +17,13 @@
 </script>
 
 <ViewLayout>
+	<FiveColumnCalendarGrid additionalClass='px-4 justify-items-center'>
+		<div />
+		<h4 class='h4'>Plant</h4>
+		<h4 class='h4'>Harvest</h4>
+		<h4 class='h4'>Sell</h4>
+		<h4 class='h4'>Notes</h4>
+	</FiveColumnCalendarGrid>
 	{#each Object.values(Month) as month}
 		<Card>
 			{#if selected === month}
