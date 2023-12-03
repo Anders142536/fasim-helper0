@@ -13,23 +13,21 @@
 
 	export let pack: Pack
 
-
 	let editMode = false
 	let edits = structuredClone(pack)
-
-	let pricePack = 0
-	let priceEdits = 0
+	let current: Pack
 
 	$: {
-		let priceBuys = pack.buys.reduce((acc, curr) => acc + curr.price, 0)
-		let priceSells = pack.sells.reduce((acc, curr) => acc + curr.price, 0) 
-		pricePack = priceBuys - priceSells
+		console.log(`changing with editMode ${editMode}`)
+		current = editMode ? edits : pack
 	}
 
+	let price = 0
+
 	$: {
-		let priceBuys = edits.buys.reduce((acc, curr) => acc + curr.price, 0)
-		let priceSells = edits.sells.reduce((acc, curr) => acc + curr.price, 0) 
-		priceEdits = priceBuys - priceSells
+		let priceBuys = current.buys.reduce((acc, curr) => acc + curr.price, 0)
+		let priceSells = current.sells.reduce((acc, curr) => acc + curr.price, 0) 
+		price = priceBuys - priceSells
 	}
 
 	const startEditMode = () => {
@@ -42,8 +40,9 @@
 	}
 
 	const confirmEdits = () => {
-		editMode = false
 		packs.save(edits)
+		edits = structuredClone(pack)
+		editMode = false
 	}
 </script>
 
@@ -86,9 +85,9 @@
 			{/if}
 		</div>
 	</div>
-	<PackItemList header='Buy' {editMode} list={editMode ? edits.buys : pack.buys} />
-	<PackItemList header='Sell' {editMode} list={editMode ? edits.sells : pack.sells} />
+	<PackItemList header='Buy' {editMode} bind:list={current.buys} />
+	<PackItemList header='Sell' {editMode} bind:list={current.sells} />
 	<div class='flex px-8 gap-2 justify-end'>
-		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[120px]'>{`${(editMode ? priceEdits : pricePack).toLocaleString()} €`}</h4>
+		<h4 class='h4'>Pack Cost:</h4> <h4 class='h4 text-right min-w-[120px]'>{`${price.toLocaleString()} €`}</h4>
 	</div>
 </Card>
